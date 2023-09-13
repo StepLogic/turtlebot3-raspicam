@@ -9,7 +9,7 @@ class ImagePublisher(object):
     def __init__(self):
         rospy.loginfo('[STARTING NODE]====>>>>>>>>')
         self.publisher_ = rospy.Publisher('video_frames', Image, queue_size=10)
-        self.loop_rate = rospy.Rate(10)
+        self.loop_rate = rospy.Rate(1)
         self.cap = cv2.VideoCapture(0)
         self.br = CvBridge()
 
