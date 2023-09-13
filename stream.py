@@ -7,17 +7,18 @@ import cv2
 
 class ImagePublisher(object):
     def __init__(self):
+        rospy.loginfo('[STARTING NODE]====>>>>>>>>')
         self.publisher_ = rospy.Publisher('video_frames', Image, queue_size=10)
         self.loop_rate = rospy.Rate(10)
         self.cap = cv2.VideoCapture(0)
         self.br = CvBridge()
 
     def start(self):
+        rospy.loginfo('[GETTING IMAGE]=====>>>>>>>')
         ret, frame = self.cap.read()
         while not rospy.is_shutdown():
             if ret:
-                rospy.loginfo('publishing image')
-                # br = CvBridge()
+                rospy.loginfo('[PUBLISHING iMAGE]=====>>>>>>>>>>>>>>>>')
                 self.publisher_.publish(self.br.cv2_to_imgmsg(frame))
                 self.loop_rate.sleep()
 
